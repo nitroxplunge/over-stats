@@ -12,7 +12,7 @@ var server = ws.createServer(function (conn) {
         owjs
             .getOverall('pc', 'us', str)
             // Send data back to client
-            .then((data) => conn.sendText("abc"));
+            .then((data) => conn.sendText(JSON.stringify(data)));
 
     });
 
