@@ -4,7 +4,8 @@ const socket = new WebSocket('ws://localhost:8003');
 socket.addEventListener('message', function (event) {
     console.log('Received message from server:', event.data);
     var playerdata = JSON.parse(event.data);
-    var level = playerdata.profile.eliminations;
+    var level = playerdata.profile.level;
+    document.getElementById("lvl").innerHTML = "Level: " + level;
     console.log(level);
 });
 
