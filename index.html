@@ -5,7 +5,9 @@
       <h1>OverStats</h1>
   </header>
   <body>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="assets/main.js"></script>
+    <script src="assets/graph.js"></script>
     <div id="search">
       <input type="text" id="btag" name="btag" placeholder="BattleTag">
       <button onclick="sendBattletag()">Search</button>
@@ -16,5 +18,6 @@
     <p id="kda"></p>
     <p id="avgelims"></p>
     <img src="#" id="rankpic"></img>
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
   </body>
 </html>
