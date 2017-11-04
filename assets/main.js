@@ -4,8 +4,12 @@ const socket = new WebSocket('ws://localhost:8003');
 socket.addEventListener('message', function (event) {
     console.log('Received message from server:', event.data);
     var playerdata = JSON.parse(event.data);
+    var level = playerdata.profile.eliminations;
+    console.log(level);
 });
 
 function sendBattletag() {
-    socket.send(document.getElementById("btag").value);
+    var BTag = document.getElementById("btag").value;
+    BTag = BTag.replace("#", "-");
+    socket.send(BTag);
 }
