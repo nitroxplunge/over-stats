@@ -7,6 +7,7 @@ socket.addEventListener('message', function (event) {
     document.getElementById("lvl").innerHTML = "Level: " + playerdata.profile.level;
     document.getElementById("sr").innerHTML = "SR: " + playerdata.profile.rank;
     document.getElementById("kda").innerHTML = "KDA: " + playerdata.competitive.global.eliminations / playerdata.competitive.global.deaths;
+    document.getElementById("avgelims").innerHTML = "Average Eliminations: " + playerdata.competitive.global.eliminations_average;
     document.getElementById("rankpic").src = playerdata.profile.rankPicture;
     document.getElementById("fetching").innerHTML = "";
 });
