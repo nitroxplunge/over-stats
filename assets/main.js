@@ -7,8 +7,11 @@ socket.addEventListener('message', function (event) {
     document.getElementById("lvl").innerHTML = "Level: " + playerdata.profile.level;
     document.getElementById("sr").innerHTML = "SR: " + playerdata.profile.rank;
     document.getElementById("kda").innerHTML = "KDA: " + playerdata.competitive.global.eliminations / playerdata.competitive.global.deaths;
-    document.getElementById("avgelims").innerHTML = "Average Eliminations: " + playerdata.competitive.global.eliminations_average;
+    document.getElementById("avgelims").innerHTML = "Average Eliminations / 10 min: " + playerdata.competitive.global.eliminations_avg_per_10_min;;
     document.getElementById("rankpic").src = playerdata.profile.rankPicture;
+    playerdata.competitive.global.all_damage_done_avg_per_10_min;
+    playerdata.competitive.global.healing_done_avg_per_10_min;
+    playerdata.competitive.global.deaths_avg_per_10_min;
     document.getElementById("fetching").innerHTML = "";
 });
 
