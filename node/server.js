@@ -1,9 +1,16 @@
 var ws = require("nodejs-websocket")
-var owjs = require('overwatch-js');
+var owjs = require("overwatch-js");
+var fs = require("fs");
 
 console.log("Opening server on port 8003...");
 
-var server = ws.createServer(function (conn) {
+var options = {
+    secure: true,
+    key: fs.readFileSync("key.pem"),
+	cert: fs.readFileSync("cert.pem")
+}
+
+var server = ws.createServer(options, function (conn) {
 
     // When we get a username
     conn.on("text", function (str) {

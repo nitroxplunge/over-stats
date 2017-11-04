@@ -1,4 +1,4 @@
-const socket = new WebSocket('ws://localhost:8003');
+const socket = new WebSocket('wss://localhost:8003');
 
 // Listen for messages
 socket.addEventListener('message', function (event) {
