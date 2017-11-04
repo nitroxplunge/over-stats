@@ -10,3 +10,10 @@ h1 {
   color: white;
   font-family: 'Ubuntu', sans-serif;
 }
+input {
+  border-radius: 10px;
+  position: absolute;
+  top: 2%;
+  left: 85%;
+  padding:
+}
