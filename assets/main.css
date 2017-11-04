@@ -16,6 +16,35 @@ input {
   top: 2%;
   left: 85%;
 }
-#lvl {
+
+#search {
+  margin: 0 auto;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+input {
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  width: 250px;
+  height: 40px;
+  border: none;
+  background-color: white;
+  text-align: center;
+}
+button {
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  width: 80px;
+  height: 40px;
+  background-color: #2655ff;
+  border: none;
+  color: white;
+}
+
+p {
   color: white;
 }

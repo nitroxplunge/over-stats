@@ -6,8 +6,14 @@
   </header>
   <body>
     <script src="assets/main.js"></script>
-    <input type="text" id="btag" name="btag" placeholder="BattleTag">
-    <button onclick="sendBattletag()">Search</button>
+    <div id="search">
+      <input type="text" id="btag" name="btag" placeholder="BattleTag">
+      <button onclick="sendBattletag()">Search</button>
+      <p id="fetching"></p>
+    </div>
     <p id="lvl">Level:</p>
+    <p id="sr">Skill Rating:</p>
+    <p id="kda">KDA:</p>
+    <img src="#" id="rankpic"></img>
   </body>
 </html>
