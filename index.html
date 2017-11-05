@@ -2,19 +2,19 @@
 <html>
   <header>
     <title>OverStats</title>
+    <img src="assets/logo.png" id="logo" height="42" width="42">
       <h1>OverStats</h1>
   </header>
   <body>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="assets/main.js"></script>
     <script src="assets/graph.js"></script>
+    <img src="../loading-animation.gif" id="loading">
     <div id="search">
       <input type="text" id="btag" name="btag" placeholder="Krusher#9999">
       <button onclick="sendBattletag()">Add</button>
       <button type="button" onclick="clearTeam()">Reset</button>
-      <p id="fetching"></p>
     </div>
-
     <div id="playerlist"><p id="team"></p></div>
 
     <!-- Eliminations -->
@@ -44,7 +44,7 @@
 
       <!-- Data & Graphs//Ranking -->
       <div id="ranking">
-        <h2 style="font-family: 'Ubuntu', sans-serif;position: relative;top: 1%;left: 5%;font-size: 18px;">YOUR TEAM</h2>
+        <h2 style="font-family: 'Ubuntu', sans-serif;position: relative;top: 1%;left: 2.5%;font-size: 18px;">YOUR TEAM</h2>
         <hr>
         <div id="chartContainer" style="height: 370px; width: 100%;"></div>
       </div>

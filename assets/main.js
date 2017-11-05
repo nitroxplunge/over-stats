@@ -19,12 +19,12 @@ socket.addEventListener('message', function (event) {
 
     addPlayer(playerdata);
 
-    //document.getElementById("fetching").innerHTML = "";
+    document.getElementById("loading").style.visibility = "hidden";
 
 });
 
 function sendBattletag() {
-    //document.getElementById("fetching").innerHTML = "Fetching Stats...";
+    document.getElementById("loading").style.visibility = "visible";
     var BTag = document.getElementById("btag").value;
     BTag = BTag.replace("#", "-");
     socket.send(BTag);

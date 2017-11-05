@@ -12,14 +12,14 @@ h1 {
   font-size: 40px;
   margin: 0;
   position: absolute;
-  top: 8%;
+  top: 9%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 #search {
   margin: 0;
   position: absolute;
-  top: 25%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -49,6 +49,9 @@ button {
   font-size: 20px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
+}
+button:hover {
+  background-color: #093df9;
 }
 #eliminations {
   border-style: solid;
@@ -131,11 +134,11 @@ p {
   position: relative;
   text-align: center;
   font-size: 70px;
-  top: -50px;
+  top: -55px;
 }
 #playerlist {
   position: absolute;
-  top: 31%;
+  top: 32%;
   width: 100%;
   text-align: center;
   color: #25cc00;
@@ -144,4 +147,24 @@ p {
 
 #playerlist p {
   font-size: 28px;
+}
+
+textarea:focus, input:focus, button:focus{
+  outline: none;
+}
+
+#loading {
+  position: absolute;
+  height: 50px;
+  visibility: hidden;
+  top: 10px;;
+  right: 10px;;
+}
+
+#logo {
+  margin: 0;
+  position: absolute;
+  top: 9%;
+  left: 39%;
+  transform: translate(-50%, -50%);
 }
