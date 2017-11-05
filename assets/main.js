@@ -183,4 +183,6 @@ function clearTeam() {
     document.getElementById("dmg").innerHTML = "";
     document.getElementById("healing").innerHTML = "";
     document.getElementById("objtime").innerHTML = "";
+    document.getElementById("avgsr").innerHTML = "";
+    document.getElementById("strongtrait").innerHTML = "";
 }
