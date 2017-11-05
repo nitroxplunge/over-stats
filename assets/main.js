@@ -12,11 +12,6 @@ socket.addEventListener('message', function (event) {
 
     //document.getElementById("rankpic").src = playerdata.profile.rankPicture;
 
-    document.getElementById("elims").innerHTML = playerdata.competitive.global.eliminations;
-    document.getElementById("dmg").innerHTML = playerdata.competitive.global.hero_damage_done;
-    document.getElementById("healing").innerHTML = playerdata.competitive.global.healing_done;
-    document.getElementById("objtime").innerHTML = playerdata.competitive.global.objective_time / 1000 + " sec";
-
     addPlayer(playerdata);
 
     document.getElementById("loading").style.visibility = "hidden";
@@ -38,6 +33,8 @@ var playerColor = ["black", "black", "black", "black", "black", "black"];
 var counter = 0;
 
 function addPlayer(data) {
+    if (playerNames.length == 6) return;
+
     playerNames.push(data.profile.nick);
     playerDatas.push(data);
     var bestStat = "Attack";
@@ -92,7 +89,7 @@ function addPlayer(data) {
         playerSkillz[i] = 0;
     }
 
-    var teamString = "Team: " + playerNames.toString();
+    var teamString = playerNames.toString();
     teamString = teamString.split(",").join(", ");
 
     document.getElementById("team").innerHTML = teamString;
@@ -105,6 +102,56 @@ function addPlayer(data) {
     chart.options.data[0].dataPoints.push({ y: playerSkillz[5], label: playerNicks[5] });
 
     chart.render();
+
+    var totalElims = 0;
+    for (i = 0; i < playerDatas.length; i++) {
+        totalElims += playerDatas[i].competitive.global.eliminations;
+    }
+    var totalDmg = 0;
+    for (i = 0; i < playerDatas.length; i++) {
+        totalDmg += playerDatas[i].competitive.global.hero_damage_done;
+    }
+    var totalHeals = 0;
+    for (i = 0; i < playerDatas.length; i++) {
+        totalHeals += playerDatas[i].competitive.global.healing_done;
+    }
+    var totalObjTime = 0;
+    for (i = 0; i < playerDatas.length; i++) {
+        totalObjTime += playerDatas[i].competitive.global.objective_time / 1000;
+    }
+
+    var avgsr = 0;
+    for (i = 0; i < playerDatas.length; i++) {
+        avgsr += playerDatas[i].profile.rank;
+    }
+    avgsr = avgsr / playerDatas.length;
+    avgsr = Math.round(avgsr);
+
+    var Avotes = 0;
+    var Hvotes = 0;
+    var Dvotes = 0;
+    for (i = 0; i < playerColor.length; i++) {
+        if (playerColor[i] === "maroon") Avotes += 1;
+        if (playerColor[i] === "teal") Hvotes += 1;
+        if (playerColor[i] === "darkGreen") Dvotes += 1;
+    }
+    var strongTrait = "Eliminations";
+    var traitVal = Avotes;
+    if (Hvotes > traitVal) {
+        strongTrait = "Healing";
+        traitVal = Hvotes;
+    }
+    if (Dvotes > traitVal) {
+        strongTrait = "Damage";
+    }
+
+    document.getElementById("elims").innerHTML = totalElims;
+    document.getElementById("dmg").innerHTML = totalDmg;
+    document.getElementById("healing").innerHTML = totalHeals;
+    document.getElementById("objtime").innerHTML = totalObjTime;
+    document.getElementById("avgsr").innerHTML = avgsr;
+    document.getElementById("strongtrait").innerHTML = strongTrait;
+
 }
 
 function clearTeam() {
