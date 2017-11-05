@@ -127,3 +127,9 @@ hr {
 #chartContainer {
   margin-top: 240px;
 }
+p {
+  position: relative;
+  text-align: center;
+  font-size: 100px;
+  top: -76px;
+}
