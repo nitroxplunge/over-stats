@@ -1,14 +1,22 @@
-# over-stats
-![Screenshot](https://i.imgur.com/d2RarYi.png)
+![Logo](https://i.imgur.com/gwklkFk.png)
+
+
+
+![Screenshot](https://i.imgur.com/XrzYo7E.png)
 
 # About
 OverStats is a statistics supplier/visualizer that gives detail about an individual and a team's strengths and performances in the video game Overwatch.
 
 # Features
 - Retrieves and displays player statistics using Overwatch-JS
-- Analyzes each player individually and determines their strengths
-- Graphs a detailed comparison of multiple players at once
+- Graphs and displays a detailed analysis of multiple players at once
 - Details strengths and weakness of teams and their individual players
+- Analyzes each player individually and determines their strengths
+
+# What Sets OverStats Apart?
+Many people would recognize game stat trackers--they are very common now that eSports has gotten fairly popular.
+We have used the many overwatch trackers, but most of them have one flaw: They don't track teams.
+Sure, they may display the roster for professional teams, and maybe their role, but that's it. Anyone with an amatuer team who wants to improve will have to either guess or calculate the stats by hand. OverStats fixes that problem by allowing the user to "add" more players to the stat tracker, and displays important information about a team that can be usefull for players ranging from groups of friends looking to play together to high school teams trying to have a good season to pros finding out what the enemy will do before the match even starts. This, of course, is not all, as OverStats can track individual performance just as easily as a team.
 
 # Our Journey
 In the beginning, we had no idea what we wanted to do.
@@ -33,7 +41,7 @@ We all had a great experience and loved the whole journey. Here are some picture
 # Contributors
 - [Full-Stack Developer] Isaac Wilcove (https://github.com/nitroxplunge)
 - [Front-End Developer] Quinn Wilmoth (https://github.com/QuinnW)
-- [Data Specialist] Anik Patel (https://github.com/Anik-Patel)
+- [Visualization and Data Specialist] Anik Patel (https://github.com/Anik-Patel)
 
 # Try it Out
 
