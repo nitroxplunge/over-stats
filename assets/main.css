@@ -42,3 +42,7 @@ button {
 p {
   color: white;
 }
+
+#chartContainer {
+  top: 80%;
+}
