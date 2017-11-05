@@ -33,7 +33,7 @@ function sendBattletag() {
 
 var playerData = playerSRs;
 var player = playerNames;
-var playerStats = PlayerBestStats;
+var playerStats = playerBestStats;
 var playerColor = [player.length];
 
 for (i = 0; i < player.length; i++) {
