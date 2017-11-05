@@ -1,5 +1,6 @@
-## OverStats
 ![Screenshot](https://i.imgur.com/qUpfADq.png)
+
+
 ![Screenshot](https://i.imgur.com/4beXuzH.png)
 
 # About
@@ -20,6 +21,8 @@ But as the saying goes, the last 20% takes just as long as the first 80%.
 We spent over 6 hours combined fixing bugs and handling extrenious cases, most of which was not particularly "fun".
 Despite the drawbacks, we finally pulled through and finished the project by 3:00 AM, 16 and a half hours after we started.
 We all had a great experience and loved the whole journey. Here are some pictures from our development process:
+
+![Coding](https://i.imgur.com/qm48JEP.jpg)
 
 # Planned Updates
 - More comprehensive comparisons
