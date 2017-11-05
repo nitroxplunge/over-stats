@@ -125,7 +125,7 @@ hr {
   background-color: black;
 }
 #chartContainer {
-  margin-top: 240px;
+  width: 70%;
 }
 p {
   position: relative;
