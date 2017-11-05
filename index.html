@@ -9,15 +9,39 @@
     <script src="assets/main.js"></script>
     <script src="assets/graph.js"></script>
     <div id="search">
-      <input type="text" id="btag" name="btag" placeholder="BattleTag">
-      <button onclick="sendBattletag()">Search</button>
-      <p id="fetching"></p>
+      <input type="text" id="btag" name="btag" placeholder="Krusher#9999">
+      <button onclick="sendBattletag()">Add</button>
     </div>
-    <p id="lvl"></p>
-    <p id="sr"></p>
-    <p id="kda"></p>
-    <p id="avgelims"></p>
-    <img src="#" id="rankpic"></img>
-    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+    <!-- Eliminations -->
+    <div id="elims">
+      <h2 style="font-family: 'Ubuntu', sans-serif;position: relative;top: 1%;left: 5%;font-size: 18px;">ELIMINATIONS/10 MIN</h2>
+      <hr>
+      <p id="elims"></p>
+    </div>
+    <!-- Damage Dealt -->
+    <div id="damage">
+      <h2 style="font-family: 'Ubuntu', sans-serif;position: relative;top: 1%;left: 5%;font-size: 18px;">HERO DAMAGE / 10 MIN</h2>
+      <hr>
+      <p id="dmg"></p>
+    </div>
+    <!-- Healing -->
+    <div id="healing">
+      <h2 style="font-family: 'Ubuntu', sans-serif;position: relative;top: 1%;left: 5%;font-size: 18px;">HEALING / 10 MIN</h2>
+      <hr>
+      <p id="healing"></p>
+    </div>
+    <!-- Objective Time -->
+    <div id="objTime">
+      <h2 style="font-family: 'Ubuntu', sans-serif;position: relative;top: 1%;left: 5%;font-size: 18px;">OBJECTIVE TIME / 10 MIN</h2>
+      <hr>
+      <p id="objtime"></p>
+    </div>
+
+    <!-- Data & Graphs//Ranking -->
+    <div id="ranking">
+      <h2 style="font-family: 'Ubuntu', sans-serif;position: relative;top: 1%;left: 5%;font-size: 18px;">YOUR TEAM</h2>
+      <hr>
+      <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+    </div>
   </body>
 </html>

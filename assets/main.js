@@ -9,17 +9,18 @@ socket.addEventListener('message', function (event) {
 
     console.log(event.data);
     var playerdata = JSON.parse(event.data);
-    /*"Level: " + playerdata.profile.level;
-    "SR: " + playerdata.profile.rank;
-    "KDA: " + playerdata.competitive.global.eliminations / playerdata.competitive.global.deaths;
-    "Average Eliminations / 10 min: " + playerdata.competitive.global.eliminations_avg_per_10_min;
-    playerdata.profile.rankPicture;
-    playerdata.competitive.global.all_damage_done_avg_per_10_min;
-    playerdata.competitive.global.healing_done_avg_per_10_min;
-    playerdata.competitive.global.deaths_avg_per_10_min;
-    document.getElementById("fetching").innerHTML = "";*/
+
+    //document.getElementById("rankpic").src = playerdata.profile.rankPicture;
+
+    document.getElementById("elims").innerHTML = playerdata.competitive.global.eliminations_avg_per_10_min;
+    document.getElementById("dmg").innerHTML = playerdata.competitive.global.hero_damage_done_avg_per_10_min;
+    document.getElementById("healing").innerHTML = playerdata.competitive.global.healing_done_avg_per_10_min;
+    document.getElementById("objtime").innerHTML = playerdata.competitive.global.objective_time_avg_per_10_min;
+
     addPlayer(playerdata);
-    
+
+    document.getElementById("fetching").innerHTML = "";
+
 });
 
 function sendBattletag() {
@@ -27,54 +28,76 @@ function sendBattletag() {
     var BTag = document.getElementById("btag").value;
     BTag = BTag.replace("#", "-");
     socket.send(BTag);
+    document.getElementById("btag").value = "";
 }
-
-
 
 var playerData = playerSRs;
 var player = playerNames;
 var playerStats = playerBestStats;
-var playerColor = [player.length];
-
-for (i = 0; i < player.length; i++) {
-  if (playerStats[i]=="Attack")
-    playerColor[i]="maroon";
-  if (playerStats[i]=="Healing")
-    playerColor[i]="teal";
-  if (playerStats[i]=="Damage")
-    playerColor[i]="darkGreen";
-}
-
-CanvasJS.addColorSet("bestStats",playerColor);
-
-window.onload = function () {
-
-var chart = new CanvasJS.Chart("chartContainer", {
-  colorSet : "bestStats",
-	animationEnabled: true,
-	data: [{        
-		type: "column",
-		dataPoints: []
-	}]
-});
-
-chart.render();
-
-}
+var playerColor = ["black", "black", "black", "black", "black", "black"];
+var counter = 0;
 
 function addPlayer(data) {
-    playernames.concat(data.profile.nick);
-    playerdatas.concat(data);
+    playerNames.push(data.profile.nick);
+    playerDatas.push(data);
     var bestStat = "Attack";
     var bestVal = data.competitive.global.eliminations;
-    if (data.competitive.global.healing_done * 2 > bestVal) {
+    if (data.competitive.global.healing_done > bestVal) {
         bestStat = "Healing";
         bestVal = data.competitive.global.healing_done;
     }
-    if (data.competitive.global.hero_damage_done * 3 > bestVal) {
+    if (data.competitive.global.hero_damage_done > bestVal) {
         bestStat = "Damage";
     }
-    playerBestStats.concat(bestStat);
-    playerSRs.concat(data.profile.rank);
-    chart.options.data[0].dataPoints.push({ y: data.profile.rank, label: data.profile.nick });
+    
+    if (bestStat === "Attack"){
+      playerColor[counter]="maroon";
+    }
+    if (bestStat === "Healing"){
+      playerColor[counter]="teal";
+    }
+    if (bestStat === "Damage"){
+      playerColor[counter]="darkGreen";
+    }
+    counter++;
+    
+    CanvasJS.addColorSet("bestStats", playerColor);
+    playerBestStats.push(bestStat);
+    playerSRs.push(data.profile.rank);
+    var chart = new CanvasJS.Chart("chartContainer", {
+        colorSet: "bestStats",
+        animationEnabled: true,
+        axisY: {
+            maximum: 5000
+        },
+        data: [{        
+            type: "column",
+            dataPoints: []
+        }]
+    });
+
+    var playerNicks = [6];
+    for (i = 0; i < playerNames.length; i++) { 
+        playerNicks[i] = playerNames[i];
+    }
+    for (i = playerNames.length; i < 6; i++) { 
+        playerNicks[i] = " ";
+    }
+
+    var playerSkillz = [6];
+    for (i = 0; i < playerSRs.length; i++) { 
+        playerSkillz[i] = playerSRs[i];
+    }
+    for (i = playerSRs.length; i < 6; i++) { 
+        playerSkillz[i] = 0;
+    }
+
+    chart.options.data[0].dataPoints.push({ y: playerSkillz[0], label: playerNicks[0] });
+    chart.options.data[0].dataPoints.push({ y: playerSkillz[1], label: playerNicks[1] });
+    chart.options.data[0].dataPoints.push({ y: playerSkillz[2], label: playerNicks[2] });
+    chart.options.data[0].dataPoints.push({ y: playerSkillz[3], label: playerNicks[3] });
+    chart.options.data[0].dataPoints.push({ y: playerSkillz[4], label: playerNicks[4] });
+    chart.options.data[0].dataPoints.push({ y: playerSkillz[5], label: playerNicks[5] });
+
+    chart.render();
 }
