@@ -14,7 +14,7 @@ OverStats is a statistics supplier/visualizer that gives detail about an individ
 
 # Our Journey
 In the beginning, we had no idea what we wanted to do.
-After brainstorming for an hour, we decided that video games, our favorite pasttime, would be the subject of our project.
+After brainstorming for an hour, we decided that video games, our favorite pastime, would be the subject of our project.
 Instantly we got to work on an overwatch data visualizer using overwatch-js.
 The backend was done in less than an hour, and our website was already looking pretty good.
 But as the saying goes, the last 20% takes just as long as the first 80%.
