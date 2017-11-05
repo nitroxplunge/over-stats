@@ -46,7 +46,6 @@ Opening server on port 8003...
 Server opened.
 ```
 
-Next, open the website:
-www.over-stats.tech
+Next, open the website at www.over-stats.tech
 
 Finally, enjoy :)
