@@ -1,6 +1,6 @@
 ## OverStats
 ![Screenshot](https://i.imgur.com/qUpfADq.png)
-![Screenshot](https://i.imgur.com/g2PBVcV.png)
+![Screenshot](https://i.imgur.com/4beXuzH.png)
 
 # About
 OverStats is a statistics supplier/visualizer that gives detail about an individual and a team's strengths and performances.
