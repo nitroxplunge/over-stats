@@ -92,6 +92,10 @@ function addPlayer(data) {
         playerSkillz[i] = 0;
     }
 
+    var teamString = "Team: " + playerNames.toString().replace(",", ", ");
+
+    document.getElementById("team").innerHTML = teamString;
+
     chart.options.data[0].dataPoints.push({ y: playerSkillz[0], label: playerNicks[0] });
     chart.options.data[0].dataPoints.push({ y: playerSkillz[1], label: playerNicks[1] });
     chart.options.data[0].dataPoints.push({ y: playerSkillz[2], label: playerNicks[2] });
@@ -100,4 +104,35 @@ function addPlayer(data) {
     chart.options.data[0].dataPoints.push({ y: playerSkillz[5], label: playerNicks[5] });
 
     chart.render();
+}
+
+function clearTeam() {
+    playerNames = [];
+    playerDatas = [];
+    playerBestStats = [];
+    playerSRs = [];
+    document.getElementById("team").innerHTML = "";
+    var chart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+        axisY: {
+            maximum: 5000
+        },
+        data: [{        
+            type: "column",
+            dataPoints: [
+                { y: 0, label: " " },
+                { y: 0, label: " " },
+                { y: 0, label: " " },
+                { y: 0, label: " " },
+                { y: 0, label: " " },
+                { y: 0, label: " " }
+            ]
+        }]
+    });
+    chart.render();
+
+    document.getElementById("elims").innerHTML = "";
+    document.getElementById("dmg").innerHTML = "";
+    document.getElementById("healing").innerHTML = "";
+    document.getElementById("objtime").innerHTML = "";
 }
