@@ -1,4 +1,4 @@
-const socket = new WebSocket('wss://localhost:8005');
+const socket = new WebSocket('wss://localhost:8003');
 var playerNames = [];
 var playerDatas = [];
 var playerBestStats = [];
