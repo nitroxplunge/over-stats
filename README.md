@@ -16,3 +16,6 @@
 - [Full-Stack Developer] Isaac Wilcove (https://github.com/nitroxplunge)
 - [Front-End Developer] Quinn Wilmoth (https://github.com/QuinnW)
 - [Data Specialist] Anik Patel (https://github.com/Anik-Patel)
+
+# try it out
+www.over-stats.tech
