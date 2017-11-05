@@ -1,4 +1,4 @@
-const socket = new WebSocket('ws://localhost:3000');
+const socket = new WebSocket('wss://localhost:8003');
 var playerNames = [];
 var playerDatas = [];
 var playerBestStats = [];
@@ -19,12 +19,12 @@ socket.addEventListener('message', function (event) {
 
     addPlayer(playerdata);
 
-    document.getElementById("fetching").innerHTML = "";
+    //document.getElementById("fetching").innerHTML = "";
 
 });
 
 function sendBattletag() {
-    document.getElementById("fetching").innerHTML = "Fetching Stats...";
+    //document.getElementById("fetching").innerHTML = "Fetching Stats...";
     var BTag = document.getElementById("btag").value;
     BTag = BTag.replace("#", "-");
     socket.send(BTag);
