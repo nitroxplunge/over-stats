@@ -41,8 +41,8 @@ function addPlayer(data) {
     playerNames.push(data.profile.nick);
     playerDatas.push(data);
     var bestStat = "Attack";
-    var bestVal = data.competitive.global.eliminations;
-    if (data.competitive.global.healing_done > bestVal) {
+    var bestVal = data.competitive.global.eliminations * 320;
+    if (data.competitive.global.healing_done * 3 > bestVal) {
         bestStat = "Healing";
         bestVal = data.competitive.global.healing_done;
     }
@@ -92,7 +92,8 @@ function addPlayer(data) {
         playerSkillz[i] = 0;
     }
 
-    var teamString = "Team: " + playerNames.toString().replace(",", ", ");
+    var teamString = "Team: " + playerNames.toString();
+    teamString = teamString.split(",").join(", ");
 
     document.getElementById("team").innerHTML = teamString;
 

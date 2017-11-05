@@ -11,7 +11,7 @@
     <script src="assets/graph.js"></script>
     <img src="../loading-animation.gif" id="loading">
     <div id="search">
-      <input type="text" id="btag" name="btag" placeholder="Krusher#9999">
+      <input type="text" id="btag" name="btag" placeholder="Battletag#0000">
       <button onclick="sendBattletag()">Add</button>
       <button type="button" onclick="clearTeam()">Reset</button>
     </div>
@@ -46,7 +46,8 @@
       <div id="ranking">
         <h2 style="font-family: 'Ubuntu', sans-serif;position: relative;top: 1%;left: 2.5%;font-size: 18px;">YOUR TEAM</h2>
         <hr>
-        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+        <div id="chartContainer" width="100%" height="50px;" style="height: 370px; width: 100%;"></div>
+        <div style="position: absolute; top: 70px; right: 20px; z-index: 100;"><p style="color: maroon; font-size: 15px; display: inline; padding-right: 20px;">Eliminations</p> <p style="color: teal; font-size: 15px; display: inline; padding-right: 20px;">Healing</p> <p style="color: darkGreen; font-size: 15px; display: inline; padding-right: 20px;">Damage</p></div>
       </div>
   </body>
 </html>
