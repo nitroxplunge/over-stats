@@ -1,7 +1,5 @@
-![Screenshot](https://i.imgur.com/qUpfADq.png)
-
-
-![Screenshot](https://i.imgur.com/dKYMc1Z.png)
+# over-stats
+![Screenshot](https://i.imgur.com/yMj5fAJ.png)
 
 # About
 OverStats is a statistics supplier/visualizer that gives detail about an individual and a team's strengths and performances in the video game Overwatch.
