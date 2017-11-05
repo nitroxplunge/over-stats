@@ -23,7 +23,6 @@ Despite the drawbacks, we finally pulled through and finished the project by 3:0
 We all had a great experience and loved the whole journey. Here are some pictures from our development process:
 
 ![Coding](https://i.imgur.com/qm48JEP.jpg)
-![Coding](https://i.imgur.com/qm48JEP.jpg)
 ![Coding](https://i.imgur.com/JJDk6aX.jpg)
 
 # Planned Updates
