@@ -5,7 +5,7 @@
 ![Screenshot](https://i.imgur.com/XrzYo7E.png)
 
 # About
-OverStats is a statistics supplier/visualizer that gives detail about an individual and a team's strengths and performances in the video game Overwatch.
+OverStats is a statistics supplier/visualizer that analyzes and displays a team's or an individual's performance in the video game Overwatch.
 
 # Features
 - Retrieves and displays player statistics using Overwatch-JS
