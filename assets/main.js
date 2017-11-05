@@ -1,4 +1,4 @@
-const socket = new WebSocket('wss://localhost:8003');
+const socket = new WebSocket('ws://localhost:3000');
 var playerNames = [];
 var playerDatas = [];
 var playerBestStats = [];
@@ -12,10 +12,10 @@ socket.addEventListener('message', function (event) {
 
     //document.getElementById("rankpic").src = playerdata.profile.rankPicture;
 
-    document.getElementById("elims").innerHTML = playerdata.competitive.global.eliminations_avg_per_10_min;
-    document.getElementById("dmg").innerHTML = playerdata.competitive.global.hero_damage_done_avg_per_10_min;
-    document.getElementById("healing").innerHTML = playerdata.competitive.global.healing_done_avg_per_10_min;
-    document.getElementById("objtime").innerHTML = playerdata.competitive.global.objective_time_avg_per_10_min;
+    document.getElementById("elims").innerHTML = playerdata.competitive.global.eliminations;
+    document.getElementById("dmg").innerHTML = playerdata.competitive.global.hero_damage_done;
+    document.getElementById("healing").innerHTML = playerdata.competitive.global.healing_done;
+    document.getElementById("objtime").innerHTML = playerdata.competitive.global.objective_time / 1000 + " sec";
 
     addPlayer(playerdata);
 
