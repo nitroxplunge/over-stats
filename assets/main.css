@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+@import url('https://fonts.googleapis.com/css?family=Teko');
+
 html { 
-  background-color: #001020;
+  background: url(bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 h1 {
   color: white;
@@ -158,11 +164,13 @@ hr {
 #chartContainer {
   width: 70%;
 }
-p {
+.stats {
   position: relative;
   text-align: center;
-  font-size: 70px;
-  top: -50px;
+  font-size: 140px;
+  font-style: italic;
+  top: -40%;
+  font-family: 'Teko', sans-serif;
 }
 #playerlist {
   border-style: solid;
@@ -198,9 +206,9 @@ textarea:focus, input:focus, button:focus{
   transform: translate(-50%, -50%);
 }
 #team {
-  margin-top: 72px;
+  margin-top: 35px;
   font-family: 'Ubuntu', sans-serif;
-  font-size: 23px;
+  font-size: 30px;
   text-align: center;
   color: #2655ff;
   text-decoration: bold;

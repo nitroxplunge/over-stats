@@ -1,66 +1,69 @@
-const socket = new WebSocket('wss://localhost:8003');
 var playerNames = [];
 var playerDatas = [];
 var playerBestStats = [];
 var playerSRs = [];
 
-// Listen for messages
-socket.addEventListener('message', function (event) {
-
-    console.log(event.data);
-    var playerdata = JSON.parse(event.data);
-
-    //document.getElementById("rankpic").src = playerdata.profile.rankPicture;
-
-    addPlayer(playerdata);
-
-    document.getElementById("loading").style.visibility = "hidden";
-
-});
-
-function sendBattletag() {
+function getData() {
     document.getElementById("loading").style.visibility = "visible";
     var BTag = document.getElementById("btag").value;
     BTag = BTag.replace("#", "-");
-    socket.send(BTag);
+
+    let requestUrl = "https://ow-api.com/v1/stats/pc/us/" + BTag + "/complete";
+    let request = new XMLHttpRequest();
+    request.open('GET', requestUrl);
+    request.responseType = 'json';
+    request.send();
+    request.onload = function() {
+        addPlayer(request.response);
+    }
+
     document.getElementById("btag").value = "";
+
+    document.getElementById("loading").style.visibility = "hidden";
 }
 
-var playerData = playerSRs;
-var player = playerNames;
-var playerStats = playerBestStats;
 var playerColor = ["black", "black", "black", "black", "black", "black"];
-var counter = 0;
+var playerCounter = 0;
 
 function addPlayer(data) {
+    // Ignore if we already have a full team
     if (playerNames.length == 6) return;
 
-    playerNames.push(data.profile.nick);
+    console.log(data);
+
+    // Save player data
+    playerNames.push(data.name);
     playerDatas.push(data);
+    playerSRs.push(data.rating);
+
+    // Calculate best stat
     var bestStat = "Attack";
-    var bestVal = data.competitive.global.eliminations * 320;
-    if (data.competitive.global.healing_done * 3 > bestVal) {
+    var bestVal = data.competitiveStats.careerStats.allHeroes.combat.eliminations * 320;
+    if (data.competitiveStats.careerStats.allHeroes.assists.healingDone * 3 > bestVal) {
         bestStat = "Healing";
-        bestVal = data.competitive.global.healing_done;
+        bestVal = data.competitiveStats.careerStats.allHeroes.assists.healingDone;
     }
-    if (data.competitive.global.hero_damage_done > bestVal) {
+    if (data.competitiveStats.careerStats.allHeroes.combat.damageDone > bestVal) {
         bestStat = "Damage";
     }
     
+    // Set color based on best stat
     if (bestStat === "Attack"){
-      playerColor[counter]="maroon";
+      playerColor[playerCounter]="maroon";
     }
     if (bestStat === "Healing"){
-      playerColor[counter]="teal";
+      playerColor[playerCounter]="teal";
     }
     if (bestStat === "Damage"){
-      playerColor[counter]="darkGreen";
+      playerColor[playerCounter]="darkGreen";
     }
-    counter++;
     
-    CanvasJS.addColorSet("bestStats", playerColor);
+    // Add best stat data
     playerBestStats.push(bestStat);
-    playerSRs.push(data.profile.rank);
+
+    // Create graph
+    CanvasJS.addColorSet("bestStats", playerColor);
+
     var chart = new CanvasJS.Chart("chartContainer", {
         colorSet: "bestStats",
         animationEnabled: true,
@@ -73,6 +76,7 @@ function addPlayer(data) {
         }]
     });
 
+    // Create new array of exactly 6 length for player names
     var playerNicks = [6];
     for (i = 0; i < playerNames.length; i++) { 
         playerNicks[i] = playerNames[i];
@@ -81,6 +85,7 @@ function addPlayer(data) {
         playerNicks[i] = " ";
     }
 
+    // Create new array of exactly 6 length for player SR
     var playerSkillz = [6];
     for (i = 0; i < playerSRs.length; i++) { 
         playerSkillz[i] = playerSRs[i];
@@ -89,40 +94,51 @@ function addPlayer(data) {
         playerSkillz[i] = 0;
     }
 
+    // Create a string with the names of the players
     var teamString = playerNames.toString();
+    // List .toString() does not include spaces, so we must add them ourselves
     teamString = teamString.split(",").join(", ");
 
+    // Set HTML
     document.getElementById("team").innerHTML = teamString;
 
-    chart.options.data[0].dataPoints.push({ y: playerSkillz[0], label: playerNicks[0] });
-    chart.options.data[0].dataPoints.push({ y: playerSkillz[1], label: playerNicks[1] });
-    chart.options.data[0].dataPoints.push({ y: playerSkillz[2], label: playerNicks[2] });
-    chart.options.data[0].dataPoints.push({ y: playerSkillz[3], label: playerNicks[3] });
-    chart.options.data[0].dataPoints.push({ y: playerSkillz[4], label: playerNicks[4] });
-    chart.options.data[0].dataPoints.push({ y: playerSkillz[5], label: playerNicks[5] });
+    // Add to chart
+    chart.options.data[0].dataPoints.push({ y: parseInt(playerSkillz[0]), label: playerNicks[0] });
+    chart.options.data[0].dataPoints.push({ y: parseInt(playerSkillz[1]), label: playerNicks[1] });
+    chart.options.data[0].dataPoints.push({ y: parseInt(playerSkillz[2]), label: playerNicks[2] });
+    chart.options.data[0].dataPoints.push({ y: parseInt(playerSkillz[3]), label: playerNicks[3] });
+    chart.options.data[0].dataPoints.push({ y: parseInt(playerSkillz[4]), label: playerNicks[4] });
+    chart.options.data[0].dataPoints.push({ y: parseInt(playerSkillz[5]), label: playerNicks[5] });
 
+    console.log(playerSRs);
+    console.log(playerSkillz);
+
+    // Render chart
     chart.render();
 
     var totalElims = 0;
     for (i = 0; i < playerDatas.length; i++) {
-        totalElims += playerDatas[i].competitive.global.eliminations;
+        totalElims += playerDatas[i].competitiveStats.careerStats.allHeroes.combat.eliminations;
     }
     var totalDmg = 0;
     for (i = 0; i < playerDatas.length; i++) {
-        totalDmg += playerDatas[i].competitive.global.hero_damage_done;
+        totalDmg += playerDatas[i].competitiveStats.careerStats.allHeroes.combat.damageDone;
     }
     var totalHeals = 0;
     for (i = 0; i < playerDatas.length; i++) {
-        totalHeals += playerDatas[i].competitive.global.healing_done;
+        totalHeals += playerDatas[i].competitiveStats.careerStats.allHeroes.assists.healingDone;
     }
     var totalObjTime = 0;
+    var displayObjTime = "00:00";
     for (i = 0; i < playerDatas.length; i++) {
-        totalObjTime += playerDatas[i].competitive.global.objective_time / 1000;
+        var calcObjTime = playerDatas[i].competitiveStats.careerStats.allHeroes.game.objectiveTime.toString().split(":")[0]*60 + playerDatas[i].competitiveStats.careerStats.allHeroes.game.objectiveTime.toString().split(":")[1];
+        totalObjTime += calcObjTime;
+        displayObjTime = Math.floor(totalObjTime / 60).toString().substring(0, Math.floor(totalObjTime / 60).toString().length - 2) + ":" + totalObjTime % 60;
     }
 
     var avgsr = 0;
     for (i = 0; i < playerDatas.length; i++) {
-        avgsr += playerDatas[i].profile.rank;
+        avgsr += playerDatas[i].rating;
     }
     avgsr = avgsr / playerDatas.length;
     avgsr = Math.round(avgsr);
@@ -135,6 +151,7 @@ function addPlayer(data) {
         if (playerColor[i] === "teal") Hvotes += 1;
         if (playerColor[i] === "darkGreen") Dvotes += 1;
     }
+    console.log(playerColor);
     var strongTrait = "Eliminations";
     var traitVal = Avotes;
     if (Hvotes > traitVal) {
@@ -148,9 +165,12 @@ function addPlayer(data) {
     document.getElementById("elims").innerHTML = totalElims;
     document.getElementById("dmg").innerHTML = totalDmg;
     document.getElementById("healing").innerHTML = totalHeals;
-    document.getElementById("objtime").innerHTML = totalObjTime;
+    document.getElementById("objtime").innerHTML = "...";//displayObjTime;//totalObjTime.toString().substring(1, totalObjTime.toString().length).slice(0, totalObjTime.toString().length - 3) + ":" + totalObjTime.toString().substring(1, totalObjTime.toString().length).slice(totalObjTime.toString().length - 3, totalObjTime.toString().length - 1);
     document.getElementById("avgsr").innerHTML = avgsr;
     document.getElementById("strongtrait").innerHTML = strongTrait;
+
+    console.log(playerCounter);
+    playerCounter++;
 
 }
 
