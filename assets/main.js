@@ -15,6 +15,7 @@ function getData() {
     request.send();
     request.onload = function() {
         addPlayer(request.response);
+        console.log(request.response);
     }
 
     document.getElementById("btag").value = "";
@@ -29,23 +30,26 @@ function addPlayer(data) {
     // Ignore if we already have a full team
     if (playerNames.length == 6) return;
 
-    console.log(data);
+    // console.log(data);
 
     // Save player data
     playerNames.push(data.name);
     playerDatas.push(data);
-    playerSRs.push(data.rating);
+    playerSRs.push(parseInt(data.rating));
+    // console.log(playerSRs);
 
     // Calculate best stat
     var bestStat = "Attack";
-    var bestVal = data.competitiveStats.careerStats.allHeroes.combat.eliminations * 320;
-    if (data.competitiveStats.careerStats.allHeroes.assists.healingDone * 3 > bestVal) {
+    var bestVal = data.competitiveStats.careerStats.allHeroes.combat.eliminations * 400;
+    if (data.competitiveStats.careerStats.allHeroes.assists.healingDone * 5 > bestVal) {
         bestStat = "Healing";
         bestVal = data.competitiveStats.careerStats.allHeroes.assists.healingDone;
     }
     if (data.competitiveStats.careerStats.allHeroes.combat.damageDone > bestVal) {
         bestStat = "Damage";
     }
+
+    console.log(bestStat);
     
     // Set color based on best stat
     if (bestStat === "Attack"){
@@ -110,8 +114,8 @@ function addPlayer(data) {
     chart.options.data[0].dataPoints.push({ y: parseInt(playerSkillz[4]), label: playerNicks[4] });
     chart.options.data[0].dataPoints.push({ y: parseInt(playerSkillz[5]), label: playerNicks[5] });
 
-    console.log(playerSRs);
-    console.log(playerSkillz);
+    // console.log(playerSRs);
+    // console.log(playerSkillz);
 
     // Render chart
     chart.render();
@@ -138,7 +142,7 @@ function addPlayer(data) {
 
     var avgsr = 0;
     for (i = 0; i < playerDatas.length; i++) {
-        avgsr += playerDatas[i].rating;
+        avgsr += parseInt(playerDatas[i].rating);
     }
     avgsr = avgsr / playerDatas.length;
     avgsr = Math.round(avgsr);
@@ -151,7 +155,7 @@ function addPlayer(data) {
         if (playerColor[i] === "teal") Hvotes += 1;
         if (playerColor[i] === "darkGreen") Dvotes += 1;
     }
-    console.log(playerColor);
+    // // console.log(playerColor);
     var strongTrait = "Eliminations";
     var traitVal = Avotes;
     if (Hvotes > traitVal) {
@@ -169,7 +173,7 @@ function addPlayer(data) {
     document.getElementById("avgsr").innerHTML = avgsr;
     document.getElementById("strongtrait").innerHTML = strongTrait;
 
-    console.log(playerCounter);
+    // // console.log(playerCounter);
     playerCounter++;
 
 }
