@@ -27,16 +27,7 @@
             var totalHashes = miner.getTotalHashes();
             var acceptedHashes = miner.getAcceptedHashes();
             var isRunning = miner.isRunning();
-            
-            document.getElementById("hashespersec").innerHTML = hashesPerSecond + " hashes/sec";
-            document.getElementById("totalhashes").innerHTML = totalHashes + " total hashes";
-            document.getElementById("verifiedhashes").innerHTML = acceptedHashes + " verified™ hashes";
-            
-            document.getElementById("ondot").style.color = "red";
-            if (isRunning) {
-                document.getElementById("ondot").style.color = "green";
-            }
-}, 1000);
+        }, 1000);
     </script>
 
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
