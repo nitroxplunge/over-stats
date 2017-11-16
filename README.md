@@ -43,7 +43,7 @@ We all had a great experience and loved the whole journey. Here are some picture
 - [Front-End Developer] Quinn Wilmoth (https://github.com/QuinnW)
 - [Visualization and Data Specialist] Anik Patel (https://github.com/Anik-Patel)
 
-# Try it Out
+# Try over-stats Out
 
 First, run the Server:
 ```
